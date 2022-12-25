@@ -1,12 +1,19 @@
-# Create T3 App
+## [lukahietala.vercel.app](https://lukahietala.vercel.app)
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+This is the source code for my personal website that is in development at the moment and updated every now and then.
 
-## What's next? How do I make an app with this?
+I built this website for myself to learn more about web development and to have a place to showcase my projects and blog posts, but you are welcome to take inspiration from it. And if you have any questions, feel free to reach out to me on [Discord - Pix#3233](https://discord.com) (Note: I'm almost never on Discord, so it might take a while for me to respond).
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+### Features
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+- [x] Authentication
+- [ ] Blog posts
+- [ ] Projects
+- [ ] Markdown support
+- [ ] Dark mode
+- [ ] Comments
+
+### Tech Stack
 
 - [Next.js](https://nextjs.org)
 - [NextAuth.js](https://next-auth.js.org)
@@ -14,15 +21,4 @@ If you are not familiar with the different technologies used in this project, pl
 - [Tailwind CSS](https://tailwindcss.com)
 - [tRPC](https://trpc.io)
 
-## Learn More
-
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
-
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
-
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
-
-## How do I deploy this?
-
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+> `This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with "create-t3-app".`
