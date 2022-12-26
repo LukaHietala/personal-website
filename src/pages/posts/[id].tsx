@@ -15,7 +15,7 @@ interface BlogPageProps {
   content: string;
 }
 
-const BlogPage = ({ data, content }: BlogPageProps) => {
+const PostPage = ({ data, content }: BlogPageProps) => {
   return (
     <div>
       <h1>{data.title}</h1>
@@ -25,7 +25,7 @@ const BlogPage = ({ data, content }: BlogPageProps) => {
   );
 };
 
-export default BlogPage;
+export default PostPage;
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const blogs = await fs.promises.readdir(
