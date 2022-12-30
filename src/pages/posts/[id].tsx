@@ -18,9 +18,14 @@ interface BlogPageProps {
 const PostPage = ({ data, content }: BlogPageProps) => {
   return (
     <div>
-      <h1>{data.title}</h1>
-      <p>{data.date}</p>
-      <div dangerouslySetInnerHTML={{ __html: marked(content) }} />
+      <h1 className="mb-3 mt-9 font-titles text-4xl font-semibold">
+        {data.title}
+      </h1>
+      <p className="text-sm opacity-80">{data.date}</p>
+      <div
+        className="prose  prose-invert mt-5"
+        dangerouslySetInnerHTML={{ __html: marked(content) }}
+      />
     </div>
   );
 };
