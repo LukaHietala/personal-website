@@ -7,10 +7,9 @@ I built this website for myself to learn more about web development and to have 
 ### Features
 
 - [x] Authentication
-- [ ] Blog posts
+- [x] Blog posts
 - [ ] Projects
 - [ ] Markdown support
-- [ ] Dark mode
 - [ ] Comments
 
 ### Tech Stack
