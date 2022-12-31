@@ -2,6 +2,7 @@ import fs from "fs";
 import matter from "gray-matter";
 import { marked } from "marked";
 import type { GetStaticPaths, GetStaticProps } from "next";
+import Head from "next/head";
 import path from "path";
 import Prism from "prismjs";
 import { useEffect } from "react";
@@ -27,17 +28,23 @@ const PostPage = ({ data, content }: BlogPageProps) => {
   }, []);
 
   return (
-    <div className="mx-auto mb-8 max-w-2xl">
-      <h1 className="mb-3 mt-9 font-titles text-4xl font-semibold">
-        {data.title}
-      </h1>
-      <p className="text-sm opacity-80">{data.date}</p>
-      <div
-        className="prose-pre: prose prose-invert mt-5 prose-headings:font-titles prose-pre:border-[1px] prose-pre:border-white prose-pre:border-opacity-10"
-        dangerouslySetInnerHTML={{ __html: marked(content) }}
-      />
-      <Footer />
-    </div>
+    <>
+      <Head>
+        <title>Luka Hietala - {data.title}</title>
+        <meta name="description" content={data.description} />
+      </Head>
+      <div className="mx-auto mb-8 max-w-2xl">
+        <h1 className="mb-3 mt-9 font-titles text-4xl font-semibold">
+          {data.title}
+        </h1>
+        <p className="text-sm opacity-80">{data.date}</p>
+        <div
+          className="prose-pre: prose prose-invert mt-5 prose-headings:font-titles prose-pre:border-[1px] prose-pre:border-white prose-pre:border-opacity-10"
+          dangerouslySetInnerHTML={{ __html: marked(content) }}
+        />
+        <Footer />
+      </div>
+    </>
   );
 };
 
