@@ -5,9 +5,10 @@ const DefaultLayout = ({ children }: { children: ReactNode }) => {
   return (
     <>
       <Head>
-        <title>My App</title>
+        <title>Luka Hietala</title>
+        <link rel="icon" href="/images/pancho-modified.png" />
       </Head>
-      <main className="mx-auto mt-7 mb-8 max-w-xl">{children}</main>
+      <main className="mx-auto mt-7 mb-8">{children}</main>
     </>
   );
 };

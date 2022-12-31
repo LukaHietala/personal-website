@@ -9,7 +9,7 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   data,
 }) => {
   return (
-    <div className="mx-auto max-w-5xl">
+    <div className="mx-auto max-w-xl">
       <div className="flex flex-col items-center justify-center">
         <Image
           src={"/images/pancho.jpeg"}
@@ -25,7 +25,7 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
         <div className="mt-1 flex space-x-2 rounded-md p-1 font-medium text-gray-300 transition-all duration-150 ease-in-out hover:bg-secondary ">
           <a href="https://github.com/LukaHietala">Github</a>
         </div>
-        <div>
+        <div className="w-full">
           <BlogPage data={data} />
         </div>
       </div>
