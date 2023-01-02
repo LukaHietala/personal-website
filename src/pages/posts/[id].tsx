@@ -39,7 +39,7 @@ const PostPage = ({ data, content }: BlogPageProps) => {
         </h1>
         <p className="text-sm opacity-80">{data.date}</p>
         <div
-          className="prose-sm prose-invert mt-5 prose-headings:font-titles prose-pre:border-[1px] prose-pre:border-white prose-pre:border-opacity-10 lg:prose"
+          className="prose-sm prose-invert mt-5 prose-headings:font-titles prose-pre:border-[1px] prose-pre:border-white prose-pre:border-opacity-10 lg:prose lg:prose-invert"
           dangerouslySetInnerHTML={{ __html: marked(content) }}
         />
         <Comments />
