@@ -33,13 +33,13 @@ const PostPage = ({ data, content }: BlogPageProps) => {
         <title>Luka Hietala - {data.title}</title>
         <meta name="description" content={data.description} />
       </Head>
-      <div className="mx-auto mb-8 max-w-2xl">
-        <h1 className="mb-3 mt-9 font-titles text-4xl font-semibold">
+      <div className="mx-auto mb-8 max-w-2xl px-4 md:px-2 lg:px-0">
+        <h1 className="mb-3 mt-9 font-titles text-2xl font-semibold lg:text-4xl">
           {data.title}
         </h1>
         <p className="text-sm opacity-80">{data.date}</p>
         <div
-          className="prose-pre: prose prose-invert mt-5 prose-headings:font-titles prose-pre:border-[1px] prose-pre:border-white prose-pre:border-opacity-10"
+          className="prose-sm prose-invert mt-5 prose-headings:font-titles prose-pre:border-[1px] prose-pre:border-white prose-pre:border-opacity-10 lg:prose"
           dangerouslySetInnerHTML={{ __html: marked(content) }}
         />
         <Comments />
@@ -54,7 +54,7 @@ export default PostPage;
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const blogs = await fs.promises.readdir(
-    path.join(process.cwd(), "src/blogs")
+    path.join(process.cwd(), "src/content/blogs")
   );
   return {
     paths: blogs.map((blog) => ({
@@ -68,7 +68,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const blog = await fs.readFileSync(
-    path.join(process.cwd(), "src/blogs", `${params?.id}.md`),
+    path.join(process.cwd(), "src/content/blogs", `${params?.id}.md`),
     "utf-8"
   );
 

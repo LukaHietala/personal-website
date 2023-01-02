@@ -9,7 +9,7 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   data,
 }) => {
   return (
-    <div className="mx-auto max-w-xl">
+    <div className="mx-auto max-w-xl px-4 md:px-2 lg:px-0">
       <div className="flex flex-col items-center justify-center">
         <Image
           src={"/images/pancho.jpeg"}
@@ -19,7 +19,7 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
           className="rounded-full"
         />
         <h1 className="mt-2 font-titles text-3xl font-bold">Luka Hietala</h1>
-        <p className="mt-2 text-gray-300">
+        <p className="mt-2 text-center text-gray-300">
           Software Developer from Finland. tRPC, Next.js, React and TypeScript.
         </p>
         <div className="mt-1 flex space-x-2 rounded-md p-1 font-medium text-gray-300 transition-all duration-150 ease-in-out hover:bg-secondary ">
@@ -35,12 +35,12 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 
 export const getStaticProps: GetStaticProps = async () => {
   const blogs = await fs.promises.readdir(
-    path.join(process.cwd(), "src/blogs")
+    path.join(process.cwd(), "src/content/blogs")
   );
   const data = await Promise.all(
     blogs.map(async (blog) => {
       const blogFile = await fs.readFileSync(
-        path.join(process.cwd(), "src/blogs", blog),
+        path.join(process.cwd(), "src/content/blogs", blog),
         "utf-8"
       );
       const { data } = matter(blogFile);
