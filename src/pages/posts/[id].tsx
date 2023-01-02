@@ -42,6 +42,8 @@ const PostPage = ({ data, content }: BlogPageProps) => {
           className="prose-pre: prose prose-invert mt-5 prose-headings:font-titles prose-pre:border-[1px] prose-pre:border-white prose-pre:border-opacity-10"
           dangerouslySetInnerHTML={{ __html: marked(content) }}
         />
+        <Comments />
+
         <Footer />
       </div>
     </>
@@ -114,4 +116,21 @@ const Footer = () => {
       </a>
     </footer>
   );
+};
+
+const Comments = () => {
+  // hydrate the comments and prevent it being rendered twice
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://utteranc.es/client.js";
+    script.async = true;
+    script.crossOrigin = "anonymous";
+    script.setAttribute("repo", "LukaHietala/personal-website");
+    script.setAttribute("issue-term", "pathname");
+    script.setAttribute("theme", "github-dark");
+    const comments = document.getElementById("comments");
+    comments?.appendChild(script);
+  }, []);
+
+  return <div id="comments" className="mt-12" />;
 };
