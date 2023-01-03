@@ -223,12 +223,12 @@ const Sidebar = ({ content }: { content: string }) => {
 const Buttons = () => {
   return (
     <div className="mt-6 flex select-none flex-row gap-3">
-      <a href={`#comments`}>
+      <a href={`/`}>
         <div className="w-max rounded-md bg-primary px-3 py-2 text-bg transition-all duration-150 ease-in-out hover:bg-opacity-80">
           Recourses <span className="font-medium">›</span>
         </div>
       </a>
-      <Link href={"/"}>
+      <Link href={"#comments"}>
         <div className="w-max rounded-md border-2 border-secondary bg-secondary bg-opacity-0  px-3 py-2 text-white transition-all duration-150 ease-in-out hover:bg-opacity-20">
           Comments
         </div>
