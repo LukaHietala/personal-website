@@ -4,6 +4,11 @@ date: "December 30, 2022"
 tags: ["next.js", "typescript"]
 description: "Make your Next.js pages more type-safe by inferring the return type of GetStaticProps or GetServerSideProps."
 slug: "how-to-get-gssp-types-next"
+learn_about:
+  [
+    "How to infer types in getStaticProps",
+    "How to infer types in getServerSideProps",
+  ]
 ---
 
 Have you ever been in a situation where you're using the `GetStaticProps` or `GetServerSideProps` function in your Next.js application to fetch data from an API, but you keep getting a type error when you try to pass the data to your page component? It can be frustrating to not be able to infer the correct return type for these functions, especially if you know the shape of the data you're expecting.

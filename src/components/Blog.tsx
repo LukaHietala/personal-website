@@ -44,7 +44,7 @@ const PostCard = ({ data }: PostCardProps) => {
   return (
     <Link href={`/posts/${data.slug}`}>
       <div className="mt-7 rounded-md p-4 transition-all duration-150 ease-in-out hover:bg-secondary hover:bg-opacity-50">
-        <h2 className="text-primary text-2xl font-semibold">{data.title}</h2>
+        <h2 className="text-2xl font-semibold text-primary">{data.title}</h2>
         <p className="mt-1 text-sm opacity-50">{data.date}</p>
         <p className="mt-2 opacity-75">{data.description}</p>
       </div>

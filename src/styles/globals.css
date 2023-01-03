@@ -7,6 +7,9 @@
     @apply bg-bg font-main text-white;
   }
 }
+html {
+  scroll-behavior: smooth;
+}
 
 /**
  * Coldark Theme for Prism.js

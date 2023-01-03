@@ -3,6 +3,8 @@ import matter from "gray-matter";
 import { marked } from "marked";
 import type { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
+import Image from "next/image";
+import Link from "next/link";
 import path from "path";
 import Prism from "prismjs";
 import { useEffect } from "react";
@@ -18,6 +20,7 @@ interface BlogPageProps {
     date: string;
     tags: string[];
     description: string;
+    learn_about: string[];
   };
   content: string;
 }
@@ -33,18 +36,47 @@ const PostPage = ({ data, content }: BlogPageProps) => {
         <title>Luka Hietala - {data.title}</title>
         <meta name="description" content={data.description} />
       </Head>
-      <div className="mx-auto mb-8 max-w-2xl px-4 md:px-2 lg:px-0">
-        <h1 className="mb-3 mt-9 font-titles text-2xl font-semibold lg:text-4xl">
-          {data.title}
-        </h1>
-        <p className="text-sm opacity-80">{data.date}</p>
-        <div
-          className="prose-sm prose-invert mt-5 prose-headings:font-titles prose-pre:border-[1px] prose-pre:border-white prose-pre:border-opacity-10 lg:prose lg:prose-invert"
-          dangerouslySetInnerHTML={{ __html: marked(content) }}
-        />
-        <Comments />
+      <div className="mx-auto mb-8 mt-8 grid max-w-4xl grid-cols-4 gap-4 px-4 md:px-2 lg:px-0">
+        <div className="col-span-3">
+          <span className="font-medium text-primary">Blog</span>
+          <h1 className="mb-3 font-titles text-2xl font-semibold lg:text-4xl">
+            {data.title}
+          </h1>
+          <p className="text-sm opacity-80">{data.date}</p>
+          <div className="mt-7 inline-flex items-center">
+            <Image
+              src={"/images/pancho.jpeg"}
+              alt="User Image"
+              width={40}
+              height={40}
+              className="rounded-full"
+            />
+            <div className="ml-3">
+              <p className="text-lg font-medium ">Luka Hietala</p>
+            </div>
+          </div>
+          <Buttons />
+          <p className="mt-8 text-xl font-semibold">What will you learn</p>
+          <div className="mt-4 select-none">
+            {data.learn_about.map((item: string, key: number) => (
+              <div
+                key={key}
+                className="mt-2 cursor-pointer rounded-sm bg-secondary p-3 transition-all duration-150 ease-in-out hover:scale-[1.02] hover:shadow-lg"
+              >
+                <span className="font-medium text-primary">•</span>
+                <span className="ml-2">{item}</span>
+              </div>
+            ))}
+          </div>
+          <div
+            className="prose-sm prose-invert mt-5 prose-headings:font-titles prose-pre:border-[1px] prose-pre:border-white prose-pre:border-opacity-10 lg:prose lg:prose-invert"
+            dangerouslySetInnerHTML={{ __html: marked(content) }}
+          />
+          <Comments />
 
-        <Footer />
+          <Footer />
+        </div>
+        <Sidebar content={content} />
       </div>
     </>
   );
@@ -132,5 +164,75 @@ const Comments = () => {
     comments?.appendChild(script);
   }, []);
 
-  return <div id="comments" className="mt-12" />;
+  return <section id="comments" className="mt-12" />;
+};
+
+const getHeadings = (content: string) => {
+  const data = marked(content);
+  const headings = [];
+  // get all headings
+  const headingRegex = /<h2 id="(.*)">(.*)<\/h2>/g;
+
+  let match = headingRegex.exec(data);
+  while (match != null) {
+    headings.push(match[1]);
+    match = headingRegex.exec(data);
+  }
+  return headings;
+};
+
+function capitalizeFirstLetter(string: string) {
+  const finalSentence = string.replace(/(^\w{1})|(\s+\w{1})/g, (letter) =>
+    letter.toUpperCase()
+  );
+  return finalSentence;
+}
+
+const Sidebar = ({ content }: { content: string }) => {
+  const headings = getHeadings(content);
+
+  return (
+    <aside className="">
+      <div className="sticky top-6 border-l-2 border-white border-opacity-10 pl-5">
+        <div className="mt-8">
+          <p className="text-lg font-semibold ">Sections</p>
+          <nav className="mt-4">
+            <ul className="space-y-2">
+              {headings.map((heading, index) => (
+                <li key={index}>
+                  <a
+                    href={`#${heading}`}
+                    className="text-sm font-medium text-white hover:text-primary"
+                  >
+                    {heading
+                      ?.replaceAll("-", " ")
+                      .split(" ")
+                      .map((word) => capitalizeFirstLetter(word))
+                      .join(" ")}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </aside>
+  );
+};
+
+const Buttons = () => {
+  return (
+    <div className="mt-6 flex select-none flex-row gap-3">
+      <a href={`#comments`}>
+        <div className="w-max rounded-md bg-primary px-3 py-2 text-bg transition-all duration-150 ease-in-out hover:bg-opacity-80">
+          Recourses <span className="font-medium">›</span>
+        </div>
+      </a>
+      <Link href={"/"}>
+        <div className="w-max rounded-md border-2 border-secondary bg-secondary bg-opacity-0  px-3 py-2 text-white transition-all duration-150 ease-in-out hover:bg-opacity-20">
+          Comments
+        </div>
+      </Link>
+    </div>
+  );
 };
